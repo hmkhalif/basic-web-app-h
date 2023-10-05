@@ -25,6 +25,13 @@ export default function QueryProcessor(query: string): string {
     return (x+y).toString();
   }
 
+  const multipleMatch = query.match(/What is (\d+) multiplied by (\d+)/);
+  if (multipleMatch) {
+    const x: number = parseInt(multipleMatch[1]);
+    const y: number = parseInt(multipleMatch[2]);
+    return (x*y).toString();
+  }
+
   if (query.toLowerCase().includes("Which of the following numbers is the largest:")) {
       const numbers = query.match(/\d+/g);
   
