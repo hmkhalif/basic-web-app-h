@@ -32,14 +32,17 @@ export default function QueryProcessor(query: string): string {
     return (x*y).toString();
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest:")) {
-      const numbers = query.match(/\d+/g);
-  
-      if (numbers && numbers.length >= 2) {
-        const largestNumber = Math.max(...numbers.map(Number));
-        return largestNumber.toString(); 
+  if (query.includes("Which of the following numbers is the largest")) {
+    var number = query.split(": ")[1].replace('?', "");
+    var numbers = number.split(", ")
+    var max = 0;
+    for (let i = 0; i < 3; i++){
+      if (parseInt(numbers[i]) > max){
+        max = parseInt(numbers[i])
       }
     }
+    return max.toString();
+  }
   
   return "";
 }
