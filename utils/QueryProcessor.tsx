@@ -18,11 +18,11 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
-  if (query.toLowerCase().includes("plus")) {
+  if (query.toLowerCase().includes("/What is (\d+(\.\d+)?) plus (\d+(\.\d+)?)\?/i;")) {
     const numbers = query.split("plus");
     if (numbers.length === 2) {
-      const num1 = parseFloat(numbers[0].trim());
-      const num2 = parseFloat(numbers[1].trim());
+      const num1 = parseFloat(numbers[1]);
+      const num2 = parseFloat(numbers[3]);
       if (!isNaN(num1) && !isNaN(num2)) {
         const sum = num1 + num2;
         return sum.toString(); 
