@@ -30,5 +30,18 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  function findLargestNumber(query: string): string | null {
+    if (query.toLowerCase().includes("which of the following numbers is the largest:")) {
+      const numbers = query.match(/\d+/g);
+  
+      if (numbers && numbers.length >= 2) {
+        const largestNumber = Math.max(...numbers.map(Number));
+        return largestNumber.toString(); 
+      }
+    }
+  
+    return null;
+  }
+
   return "";
 }
